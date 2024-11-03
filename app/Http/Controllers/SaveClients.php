@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class SaveClients extends Controller
 {
+    
     public function store(Request $request)
     {
         // Valider les données de la requête
@@ -18,11 +19,11 @@ class SaveClients extends Controller
             'adresse' => 'required|string|max:50',
         ]);
 
-        Clients::created($validatedData);
-
-
+        // Créer une nouvelle instance du modèle Clients
+        Clients::create($validatedData);
 
         // Retourner une réponse appropriée
-        return redirect()->route('Clients.index')->with('success', 'Client ajouté avec succès.');
+        return redirect('/')->with('success', 'Client ajouté avec succès.');
     }
+
 }
